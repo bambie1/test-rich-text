@@ -5,6 +5,8 @@ import {
   Platform,
   StyleSheet,
   Text,
+  TextInput,
+  ScrollView,
 } from "react-native";
 import { editorHtml } from "../../editor-web/build/editorHtml";
 import {
@@ -39,9 +41,12 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={exampleStyles.fullScreen}>
-      <Counter editor={editor} />
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <Counter editor={editor} />
+        <TextInput placeholder="Title" style={exampleStyles.input} />
+        <RichText editor={editor} scrollEnabled={false} />
+      </ScrollView>
 
-      <RichText editor={editor} />
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={exampleStyles.keyboardAvoidingView}
@@ -60,5 +65,10 @@ const exampleStyles = StyleSheet.create({
     position: "absolute",
     width: "100%",
     bottom: 0,
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
   },
 });
