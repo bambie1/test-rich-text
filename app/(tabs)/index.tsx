@@ -36,14 +36,22 @@ export default function HomeScreen() {
     bridgeExtensions: [...TenTapStartKit, CounterBridge],
     autofocus: true,
     avoidIosKeyboard: true,
-    initialContent: `<p>This is a basic example of implementing images.</p><img src="https://source.unsplash.com/8xznAGy4HcY/800x400" /><p>s sdfdsf fd dsfd ssdfd dsfdsfdsfdsfd</p>`,
+    dynamicHeight: true,
+    initialContent: `<p>This is a basic example of implementing images.</p><img src="https://images.unsplash.com/photo-1498747946579-bde604cb8f44?q=80&w=3864&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" /><p>s sdfdsf fd dsfd ssdfd dsfdsfdsfdsfd</p>`,
   });
 
   return (
     <SafeAreaView style={exampleStyles.fullScreen}>
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <ScrollView contentContainerStyle={exampleStyles.scrollView}>
         <Counter editor={editor} />
-        <TextInput placeholder="Title" style={exampleStyles.input} />
+        <View style={{ marginVertical: 20 }}>
+          <Text style={exampleStyles.title}>Editor</Text>
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec
+            odio. Praesent libero.
+          </Text>
+        </View>
+        <TextInput placeholder="Subtitle" style={exampleStyles.input} />
         <RichText editor={editor} scrollEnabled={false} />
       </ScrollView>
 
@@ -61,6 +69,12 @@ const exampleStyles = StyleSheet.create({
   fullScreen: {
     flex: 1,
   },
+  scrollView: {
+    flexGrow: 1,
+    paddingTop: 20,
+    paddingHorizontal: 20,
+    backgroundColor: "white",
+  },
   keyboardAvoidingView: {
     position: "absolute",
     width: "100%",
@@ -68,7 +82,12 @@ const exampleStyles = StyleSheet.create({
   },
   input: {
     height: 40,
-    margin: 12,
+    marginVertical: 12,
     borderWidth: 1,
+    padding: 10,
+  },
+  title: {
+    fontSize: 36,
+    fontWeight: "bold",
   },
 });
